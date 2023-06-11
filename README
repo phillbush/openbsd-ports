@@ -1,0 +1,9 @@
+                           OpenBSD - My Ports
+
+Ports for openbsd.
+
+Contains
+• games/dsda-doom
+• games/hedgewars
+• x11/pmenu
+• x11/xfiles
