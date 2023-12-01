@@ -3,6 +3,9 @@
 Ports for openbsd.
 
 Contains
+• devel/libmsp430
+• devel/msp430-none-elf
+• devel/mspdebug
 • games/dsda-doom
 • games/hedgewars
 • x11/pmenu
