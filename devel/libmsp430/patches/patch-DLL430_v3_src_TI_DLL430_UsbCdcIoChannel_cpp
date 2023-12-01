@@ -1,0 +1,97 @@
+Index: DLL430_v3/src/TI/DLL430/UsbCdcIoChannel.cpp
+--- DLL430_v3/src/TI/DLL430/UsbCdcIoChannel.cpp.orig
++++ DLL430_v3/src/TI/DLL430/UsbCdcIoChannel.cpp
+@@ -66,6 +66,19 @@ extern "C" {
+ 
+ #else
+ 
++#if defined(__OpenBSD__)
++#include <sys/types.h>
++#include <sys/ioctl.h>
++#include <sys/sysctl.h>
++#include <dev/usb/usb.h>
++
++#include <fcntl.h>
++#include <limits.h>
++#include <stdio.h>
++#include <string.h>
++#include <termios.h>
++#endif /* __OpenBSD__ */
++
+ 	#include <unistd.h>
+ 	#include <boost/filesystem.hpp>
+ 
+@@ -308,6 +321,57 @@ void UsbCdcIoChannel::createCdcPortList(const uint16_t
+ 			portList[portInfo.name] = portInfo;
+ 		}
+ 	}
++#elif defined(__OpenBSD__)
++	struct usb_device_info dinfo;
++	int mib[2] = { CTL_HW, HW_UCOMNAMES };
++	int fd;
++	uint8_t addr;
++	char bus, dev;
++	char pathbuf[PATH_MAX];
++	char ucombuf[BUFSIZ];
++	char *field, *s, *filename;
++	size_t len;
++
++	len = sizeof(ucombuf) - 1;
++	if (sysctl(mib, 2, ucombuf, &len, NULL, 0) == -1)
++		return;
++	/* ucombuf[] has comma separated list of "ucomN:usbM.<REST>" */
++	s = ucombuf;
++	for (field = strsep(&s, ","); field != NULL; field = strsep(&s, ",")) {
++		if (*field == '\0' || strncmp(field, "ucom", 4) != 0)
++			continue;
++		dev = field[4];                 /* dev == 'N' */
++		if ((field = strstr(field, ":usb")) == NULL)
++			continue;
++		bus = field[4];                 /* bus == 'M' */
++		snprintf(pathbuf, sizeof(pathbuf), "/dev/usb%c", bus);
++		if ((fd = ::open(pathbuf, O_RDONLY)) == -1)
++			continue;
++		for (addr = 1; addr < USB_MAX_DEVICES; addr++) {
++			dinfo.udi_addr = addr;
++			if (ioctl(fd, USB_DEVICEINFO, &dinfo) == -1)
++				continue;
++			if (dinfo.udi_vendorNo != vendorId)
++				continue;
++			if (dinfo.udi_productNo != productId)
++				continue;
++			break;
++		}
++		::close(fd);
++		if (addr == USB_MAX_DEVICES)
++			continue;
++		/* a maching usb device has been found */
++		snprintf(pathbuf, sizeof(pathbuf), "/dev/cuaU%c", dev);
++		filename = pathbuf + 5;         /* 5 == strlen("/dev/") */
++		PortInfo portInfo(filename, pathbuf, PortInfo::CDC);
++		if (productId == 0x0010)
++		{
++			portInfo.useFlowControl = true;
++			portInfo.useCrc = true;
++		}
++		portInfo.status = UsbCdcIoChannel(portInfo).getStatus();
++		portList[portInfo.name] = portInfo;
++	}
+ #else
+ 	stringstream cdcIdStream;
+ 	cdcIdStream << hex << setfill('0') << "usb:v" << setw(4) << vendorId << "p" << setw(4) << productId;
+@@ -439,6 +503,15 @@ bool UsbCdcIoChannel::open()
+ 		{
+ 			return false;
+ 		}
++#elif defined(__OpenBSD__)
++		struct termios tbuf;
++
++		if (tcgetattr(port->native_handle(), &tbuf) == -1)
++			return false;
++		if (cfsetspeed(&tbuf, baudrate) == -1)
++			return false;
++		if (tcsetattr(port->native_handle(), TCSANOW, &tbuf) == -1)
++			return false;
+ #else
+ 		port->set_option( serial_port::baud_rate( baudrate ) );
+ #endif

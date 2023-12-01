@@ -1,0 +1,40 @@
+@bin bin/${CONFIG}-gdb
+bin/${CONFIG}-gdb-add-index
+@bin bin/${CONFIG}-run
+@comment include/gdb/
+@comment include/gdb/jit-reader.h
+include/sim/
+include/sim/callback.h
+include/sim/sim.h
+@comment @info info/annotate.info
+@comment @info info/bfd.info
+@comment @info info/ctf-spec.info
+@comment @info info/gdb.info
+@comment @info info/sframe-spec.info
+@comment @info info/stabs.info
+@static-lib lib/lib${CONFIG}-sim.a
+@man man/man1/${CONFIG}-gdb-add-index.1
+@man man/man1/${CONFIG}-gdb.1
+@man man/man1/${CONFIG}-gdbserver.1
+@man man/man5/${CONFIG}-gdbinit.5
+@comment share/gdb/
+@comment share/gdb/syscalls/
+@comment share/gdb/syscalls/aarch64-linux.xml
+@comment share/gdb/syscalls/amd64-linux.xml
+@comment share/gdb/syscalls/arm-linux.xml
+@comment share/gdb/syscalls/freebsd.xml
+@comment share/gdb/syscalls/gdb-syscalls.dtd
+@comment share/gdb/syscalls/i386-linux.xml
+@comment share/gdb/syscalls/mips-n32-linux.xml
+@comment share/gdb/syscalls/mips-n64-linux.xml
+@comment share/gdb/syscalls/mips-o32-linux.xml
+@comment share/gdb/syscalls/netbsd.xml
+@comment share/gdb/syscalls/ppc-linux.xml
+@comment share/gdb/syscalls/ppc64-linux.xml
+@comment share/gdb/syscalls/s390-linux.xml
+@comment share/gdb/syscalls/s390x-linux.xml
+@comment share/gdb/syscalls/sparc-linux.xml
+@comment share/gdb/syscalls/sparc64-linux.xml
+@comment share/gdb/system-gdbinit/
+@comment share/gdb/system-gdbinit/elinos.py
+@comment share/gdb/system-gdbinit/wrs-linux.py

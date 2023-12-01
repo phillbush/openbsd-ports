@@ -1,0 +1,235 @@
+@comment @info info/porting.info
+${CONFIG}/include/
+${CONFIG}/include/_ansi.h
+${CONFIG}/include/_newlib_version.h
+${CONFIG}/include/_syslist.h
+${CONFIG}/include/alloca.h
+${CONFIG}/include/ar.h
+${CONFIG}/include/argz.h
+${CONFIG}/include/assert.h
+${CONFIG}/include/bits/
+${CONFIG}/include/complex.h
+${CONFIG}/include/cpio.h
+${CONFIG}/include/ctype.h
+${CONFIG}/include/devctl.h
+${CONFIG}/include/dirent.h
+${CONFIG}/include/elf.h
+${CONFIG}/include/envlock.h
+${CONFIG}/include/envz.h
+${CONFIG}/include/errno.h
+${CONFIG}/include/fastmath.h
+${CONFIG}/include/fcntl.h
+${CONFIG}/include/fenv.h
+${CONFIG}/include/fnmatch.h
+${CONFIG}/include/ftw.h
+${CONFIG}/include/getopt.h
+${CONFIG}/include/glob.h
+${CONFIG}/include/grp.h
+${CONFIG}/include/iconv.h
+${CONFIG}/include/ieeefp.h
+${CONFIG}/include/inttypes.h
+${CONFIG}/include/langinfo.h
+${CONFIG}/include/libgen.h
+${CONFIG}/include/limits.h
+${CONFIG}/include/locale.h
+${CONFIG}/include/machine/
+${CONFIG}/include/machine/_arc4random.h
+${CONFIG}/include/machine/_default_types.h
+${CONFIG}/include/machine/_endian.h
+${CONFIG}/include/machine/_time.h
+${CONFIG}/include/machine/_types.h
+${CONFIG}/include/machine/ansi.h
+${CONFIG}/include/machine/endian.h
+${CONFIG}/include/machine/fastmath.h
+${CONFIG}/include/machine/ieee.h
+${CONFIG}/include/machine/ieeefp.h
+${CONFIG}/include/machine/malloc.h
+${CONFIG}/include/machine/param.h
+${CONFIG}/include/machine/setjmp-dj.h
+${CONFIG}/include/machine/setjmp.h
+${CONFIG}/include/machine/stdlib.h
+${CONFIG}/include/machine/termios.h
+${CONFIG}/include/machine/time.h
+${CONFIG}/include/machine/types.h
+${CONFIG}/include/malloc.h
+${CONFIG}/include/math.h
+${CONFIG}/include/memory.h
+${CONFIG}/include/ndbm.h
+${CONFIG}/include/newlib.h
+${CONFIG}/include/paths.h
+${CONFIG}/include/pthread.h
+${CONFIG}/include/pwd.h
+${CONFIG}/include/reent.h
+${CONFIG}/include/regdef.h
+${CONFIG}/include/regex.h
+${CONFIG}/include/rpc/
+${CONFIG}/include/sched.h
+${CONFIG}/include/search.h
+${CONFIG}/include/setjmp.h
+${CONFIG}/include/signal.h
+${CONFIG}/include/spawn.h
+${CONFIG}/include/ssp/
+${CONFIG}/include/ssp/ssp.h
+${CONFIG}/include/ssp/stdio.h
+${CONFIG}/include/ssp/stdlib.h
+${CONFIG}/include/ssp/string.h
+${CONFIG}/include/ssp/strings.h
+${CONFIG}/include/ssp/unistd.h
+${CONFIG}/include/ssp/wchar.h
+${CONFIG}/include/stdatomic.h
+${CONFIG}/include/stdint.h
+${CONFIG}/include/stdio.h
+${CONFIG}/include/stdio_ext.h
+${CONFIG}/include/stdlib.h
+${CONFIG}/include/string.h
+${CONFIG}/include/strings.h
+${CONFIG}/include/sys/
+${CONFIG}/include/sys/_default_fcntl.h
+${CONFIG}/include/sys/_intsup.h
+${CONFIG}/include/sys/_locale.h
+${CONFIG}/include/sys/_pthreadtypes.h
+${CONFIG}/include/sys/_sigset.h
+${CONFIG}/include/sys/_stdint.h
+${CONFIG}/include/sys/_timespec.h
+${CONFIG}/include/sys/_timeval.h
+${CONFIG}/include/sys/_types.h
+${CONFIG}/include/sys/_tz_structs.h
+${CONFIG}/include/sys/cdefs.h
+${CONFIG}/include/sys/config.h
+${CONFIG}/include/sys/custom_file.h
+${CONFIG}/include/sys/dir.h
+${CONFIG}/include/sys/dirent.h
+${CONFIG}/include/sys/errno.h
+${CONFIG}/include/sys/fcntl.h
+${CONFIG}/include/sys/features.h
+${CONFIG}/include/sys/fenv.h
+${CONFIG}/include/sys/file.h
+${CONFIG}/include/sys/iconvnls.h
+${CONFIG}/include/sys/lock.h
+${CONFIG}/include/sys/param.h
+${CONFIG}/include/sys/queue.h
+${CONFIG}/include/sys/reent.h
+${CONFIG}/include/sys/resource.h
+${CONFIG}/include/sys/sched.h
+${CONFIG}/include/sys/select.h
+${CONFIG}/include/sys/signal.h
+${CONFIG}/include/sys/stat.h
+${CONFIG}/include/sys/stdio.h
+${CONFIG}/include/sys/string.h
+${CONFIG}/include/sys/syslimits.h
+${CONFIG}/include/sys/time.h
+${CONFIG}/include/sys/timeb.h
+${CONFIG}/include/sys/times.h
+${CONFIG}/include/sys/timespec.h
+${CONFIG}/include/sys/tree.h
+${CONFIG}/include/sys/types.h
+${CONFIG}/include/sys/unistd.h
+${CONFIG}/include/sys/utime.h
+${CONFIG}/include/sys/wait.h
+${CONFIG}/include/tar.h
+${CONFIG}/include/termios.h
+${CONFIG}/include/tgmath.h
+${CONFIG}/include/threads.h
+${CONFIG}/include/time.h
+${CONFIG}/include/unctrl.h
+${CONFIG}/include/unistd.h
+${CONFIG}/include/utime.h
+${CONFIG}/include/utmp.h
+${CONFIG}/include/wchar.h
+${CONFIG}/include/wctype.h
+${CONFIG}/include/wordexp.h
+${CONFIG}/lib/430/
+${CONFIG}/lib/430/crt0.o
+${CONFIG}/lib/430/gcrt0.o
+${CONFIG}/lib/430/intr_vectors.ld
+@static-lib ${CONFIG}/lib/430/libc.a
+@static-lib ${CONFIG}/lib/430/libcrt.a
+@static-lib ${CONFIG}/lib/430/libg.a
+@static-lib ${CONFIG}/lib/430/libm.a
+@static-lib ${CONFIG}/lib/430/libnosys.a
+@static-lib ${CONFIG}/lib/430/libsim.a
+${CONFIG}/lib/430/msp430-sim.ld
+${CONFIG}/lib/430/msp430xl-sim.ld
+${CONFIG}/lib/430/no-exceptions/
+${CONFIG}/lib/430/no-exceptions/crt0.o
+${CONFIG}/lib/430/no-exceptions/gcrt0.o
+${CONFIG}/lib/430/no-exceptions/intr_vectors.ld
+@static-lib ${CONFIG}/lib/430/no-exceptions/libc.a
+@static-lib ${CONFIG}/lib/430/no-exceptions/libcrt.a
+@static-lib ${CONFIG}/lib/430/no-exceptions/libg.a
+@static-lib ${CONFIG}/lib/430/no-exceptions/libm.a
+@static-lib ${CONFIG}/lib/430/no-exceptions/libnosys.a
+@static-lib ${CONFIG}/lib/430/no-exceptions/libsim.a
+${CONFIG}/lib/430/no-exceptions/msp430-sim.ld
+${CONFIG}/lib/430/no-exceptions/msp430xl-sim.ld
+${CONFIG}/lib/crt0.o
+${CONFIG}/lib/gcrt0.o
+${CONFIG}/lib/intr_vectors.ld
+${CONFIG}/lib/large/
+${CONFIG}/lib/large/crt0.o
+${CONFIG}/lib/large/full-memory-range/
+${CONFIG}/lib/large/full-memory-range/crt0.o
+${CONFIG}/lib/large/full-memory-range/gcrt0.o
+${CONFIG}/lib/large/full-memory-range/intr_vectors.ld
+@static-lib ${CONFIG}/lib/large/full-memory-range/libc.a
+@static-lib ${CONFIG}/lib/large/full-memory-range/libcrt.a
+@static-lib ${CONFIG}/lib/large/full-memory-range/libg.a
+@static-lib ${CONFIG}/lib/large/full-memory-range/libm.a
+@static-lib ${CONFIG}/lib/large/full-memory-range/libnosys.a
+@static-lib ${CONFIG}/lib/large/full-memory-range/libsim.a
+${CONFIG}/lib/large/full-memory-range/msp430-sim.ld
+${CONFIG}/lib/large/full-memory-range/msp430xl-sim.ld
+${CONFIG}/lib/large/full-memory-range/no-exceptions/
+${CONFIG}/lib/large/full-memory-range/no-exceptions/crt0.o
+${CONFIG}/lib/large/full-memory-range/no-exceptions/gcrt0.o
+${CONFIG}/lib/large/full-memory-range/no-exceptions/intr_vectors.ld
+@static-lib ${CONFIG}/lib/large/full-memory-range/no-exceptions/libc.a
+@static-lib ${CONFIG}/lib/large/full-memory-range/no-exceptions/libcrt.a
+@static-lib ${CONFIG}/lib/large/full-memory-range/no-exceptions/libg.a
+@static-lib ${CONFIG}/lib/large/full-memory-range/no-exceptions/libm.a
+@static-lib ${CONFIG}/lib/large/full-memory-range/no-exceptions/libnosys.a
+@static-lib ${CONFIG}/lib/large/full-memory-range/no-exceptions/libsim.a
+${CONFIG}/lib/large/full-memory-range/no-exceptions/msp430-sim.ld
+${CONFIG}/lib/large/full-memory-range/no-exceptions/msp430xl-sim.ld
+${CONFIG}/lib/large/gcrt0.o
+${CONFIG}/lib/large/intr_vectors.ld
+@static-lib ${CONFIG}/lib/large/libc.a
+@static-lib ${CONFIG}/lib/large/libcrt.a
+@static-lib ${CONFIG}/lib/large/libg.a
+@static-lib ${CONFIG}/lib/large/libm.a
+@static-lib ${CONFIG}/lib/large/libnosys.a
+@static-lib ${CONFIG}/lib/large/libsim.a
+${CONFIG}/lib/large/msp430-sim.ld
+${CONFIG}/lib/large/msp430xl-sim.ld
+${CONFIG}/lib/large/no-exceptions/
+${CONFIG}/lib/large/no-exceptions/crt0.o
+${CONFIG}/lib/large/no-exceptions/gcrt0.o
+${CONFIG}/lib/large/no-exceptions/intr_vectors.ld
+@static-lib ${CONFIG}/lib/large/no-exceptions/libc.a
+@static-lib ${CONFIG}/lib/large/no-exceptions/libcrt.a
+@static-lib ${CONFIG}/lib/large/no-exceptions/libg.a
+@static-lib ${CONFIG}/lib/large/no-exceptions/libm.a
+@static-lib ${CONFIG}/lib/large/no-exceptions/libnosys.a
+@static-lib ${CONFIG}/lib/large/no-exceptions/libsim.a
+${CONFIG}/lib/large/no-exceptions/msp430-sim.ld
+${CONFIG}/lib/large/no-exceptions/msp430xl-sim.ld
+@static-lib ${CONFIG}/lib/libc.a
+@static-lib ${CONFIG}/lib/libcrt.a
+@static-lib ${CONFIG}/lib/libg.a
+@static-lib ${CONFIG}/lib/libm.a
+@static-lib ${CONFIG}/lib/libnosys.a
+@static-lib ${CONFIG}/lib/libsim.a
+${CONFIG}/lib/msp430-sim.ld
+${CONFIG}/lib/msp430xl-sim.ld
+${CONFIG}/lib/no-exceptions/
+${CONFIG}/lib/no-exceptions/crt0.o
+${CONFIG}/lib/no-exceptions/gcrt0.o
+${CONFIG}/lib/no-exceptions/intr_vectors.ld
+@static-lib ${CONFIG}/lib/no-exceptions/libc.a
+@static-lib ${CONFIG}/lib/no-exceptions/libcrt.a
+@static-lib ${CONFIG}/lib/no-exceptions/libg.a
+@static-lib ${CONFIG}/lib/no-exceptions/libm.a
+@static-lib ${CONFIG}/lib/no-exceptions/libnosys.a
+@static-lib ${CONFIG}/lib/no-exceptions/libsim.a
+${CONFIG}/lib/no-exceptions/msp430-sim.ld
+${CONFIG}/lib/no-exceptions/msp430xl-sim.ld

@@ -1,0 +1,92 @@
+Index: Makefile
+--- Makefile.orig
++++ Makefile
+@@ -1,14 +1,12 @@
+-CXXFLAGS := -fPIC -std=c++0x -fvisibility=hidden -fvisibility-inlines-hidden
++_CXXFLAGS := -fPIC -std=c++0x -fvisibility=hidden -fvisibility-inlines-hidden
++_CXXFLAGS += $(CXXFLAGS) $(CPPFLAGS)
+ 
+ PCH_HEADER := ./DLL430_v3/src/TI/DLL430/pch.h
+ PCH_COMPILED := ./DLL430_v3/src/TI/DLL430/pch.h.gch
+ 
+ DEFINES := -DUNIX
+ 
+-ifdef DEBUG
+-CXXFLAGS += -g -O0
+-else
+-CXXFLAGS += -Os
++ifndef DEBUG
+ DEFINES += -DNDEBUG
+ endif
+ 
+@@ -28,13 +26,13 @@ INCLUDES := \
+ 	-I./ThirdParty/BSL430_DLL
+ 
+ 
+-LIBS :=
+-STATIC_LIBS :=
++LIBS := $(LDFLAGS)
++STATIC_LIBS := $(LDFLAGS)
+ 
+ ifdef STATIC
+-STATIC_LIBS += -lboost_filesystem -lboost_system -lbsl430 -lboost_date_time -lboost_chrono -lboost_thread
++STATIC_LIBS += -lboost_filesystem-mt -lboost_system-mt -lbsl430 -lboost_date_time-mt -lboost_chrono-mt -lboost_thread-mt
+ else
+-LIBS += -lboost_filesystem -lboost_system -lbsl430 -lboost_date_time -lboost_chrono -lboost_thread
++LIBS += -lboost_filesystem-mt -lboost_system-mt -lbsl430 -lboost_date_time-mt -lboost_chrono-mt -lboost_thread-mt
+ endif
+ 
+ LIBTHIRD := ./ThirdParty/lib64
+@@ -68,15 +66,15 @@ ifeq ($(PLATFORM),Linux)
+ 
+ 	HIDOBJ := $(LIBTHIRD)/hid-libusb.o
+ else
+-	CXX:= clang++
++#	CXX:= clang++
+ 
+-	OUTPUT := libmsp430.dylib
+-	STATICOUTPUT := mac64
++	OUTPUT := libmsp430.so
++	STATICOUTPUT := libmsp430
+ 
+ 	ifdef STATIC
+-	STATIC_LIBS += -framework CoreFoundation -framework IOKit -lhidapi
++	STATIC_LIBS += -lhidapi-libusb
+ 	else
+-	LIBS += -framework CoreFoundation -framework IOKit -lhidapi
++	LIBS += -lhidapi-libusb
+ 	endif
+ 
+ 	ifdef BOOST_DIR
+@@ -84,9 +82,9 @@ else
+ 	LIBDIRS += -L$(BOOST_DIR)/lib
+ 	endif
+ 
+-	OUTNAME := -install_name
+-	BSTATIC :=
+-	BDYNAMIC :=
++	OUTNAME := -Wl,-soname,
++	BSTATIC := -Wl,-Bstatic
++	BDYNAMIC := -Wl,-Bdynamic
+ 
+ 	HIDOBJ :=
+ endif
+@@ -123,15 +121,15 @@ SRC := \
+ OBJS := $(patsubst %.cpp, %.o, $(SRC))
+ 
+ all: $(BSLLIB) $(OBJS)
+-	$(CXX) $(CXXFLAGS) -shared $(OUTNAME)$(OUTPUT) -o $(OUTPUT) $(OBJS) $(HIDOBJ) $(LIBDIRS) $(BSTATIC) $(STATIC_LIBS) $(BDYNAMIC) $(LIBS)
++	$(CXX) $(_CXXFLAGS) -shared $(OUTNAME)$(OUTPUT) -o $(OUTPUT) $(OBJS) $(HIDOBJ) $(LIBDIRS) $(BSTATIC) $(STATIC_LIBS) $(BDYNAMIC) $(LIBS)
+ 	rm -f $(STATICOUTPUT).a
+ 	ar -rs $(STATICOUTPUT).a $(OBJS)
+ 
+ $(PCH_COMPILED): $(PCH_HEADER)
+-	$(CXX) $(MAKE_PCH) -o $@ $< $(CXXFLAGS) $(INCLUDES) $(DEFINES)
++	$(CXX) $(MAKE_PCH) -o $@ $< $(_CXXFLAGS) $(INCLUDES) $(DEFINES)
+ 
+ %.o: %.cpp $(PCH_COMPILED)
+-	$(CXX) -c -o $@ $< $(USE_PCH) $(CXXFLAGS) $(INCLUDES) $(DEFINES)
++	$(CXX) -c -o $@ $< $(USE_PCH) $(_CXXFLAGS) $(INCLUDES) $(DEFINES)
+ 
+ $(BSLLIB):
+ 	$(MAKE) -C ./ThirdParty/BSL430_DLL
