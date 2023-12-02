@@ -16,7 +16,7 @@ Index: DLL430_v3/src/TI/DLL430/UsbCdcIoChannel.cpp
 +#include <stdio.h>
 +#include <string.h>
 +#include <termios.h>
-+#endif /* __OpenBSD__ */
++#endif
 +
  	#include <unistd.h>
  	#include <boost/filesystem.hpp>
@@ -79,18 +79,30 @@ Index: DLL430_v3/src/TI/DLL430/UsbCdcIoChannel.cpp
  #else
  	stringstream cdcIdStream;
  	cdcIdStream << hex << setfill('0') << "usb:v" << setw(4) << vendorId << "p" << setw(4) << productId;
-@@ -439,6 +503,15 @@ bool UsbCdcIoChannel::open()
+@@ -439,6 +503,27 @@ bool UsbCdcIoChannel::open()
  		{
  			return false;
  		}
 +#elif defined(__OpenBSD__)
 +		struct termios tbuf;
 +
++		/*
++		 * Boost.asio fails to set non-standard baudrates on OpenBSD
++		 * as well.
++		 */
 +		if (tcgetattr(port->native_handle(), &tbuf) == -1)
 +			return false;
 +		if (cfsetspeed(&tbuf, baudrate) == -1)
 +			return false;
 +		if (tcsetattr(port->native_handle(), TCSANOW, &tbuf) == -1)
++			return false;
++
++		/*
++		 * Boost.asio lets garbage into serial port's buffer on some
++		 * UNIX systems when it is written/read by different threads
++		 * or processes. We need to flush the serial port then.
++		 */
++		if (tcflush(port->native_handle(), TCIOFLUSH) == -1)
 +			return false;
  #else
  		port->set_option( serial_port::baud_rate( baudrate ) );
