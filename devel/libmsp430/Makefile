@@ -13,8 +13,8 @@ FIX_CRLF_FILES =	Makefile \
 
 HOMEPAGE =		http://www.ti.com/tool/MSPDS
 
-# TI-TSPA
-PERMIT_PACKAGE =	No
+# TI TEXT FILE LICENSE (also MIT, BSD, and Unlicense for minor components)
+PERMIT_PACKAGE =	Yes
 
 # ?
 USE_NOEXECONLY =	Yes
@@ -24,6 +24,8 @@ WANTLIB =		${COMPILER_LIBCXX} \
 			boost_filesystem-mt boost_system-mt \
 			boost_thread-mt hidapi-libusb \
 			m pthread
+
+COMPILER =		base-clang ports-gcc
 
 LIB_DEPENDS =		devel/boost \
 			comms/libhidapi

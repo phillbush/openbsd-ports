@@ -1,0 +1,9 @@
+naken_asm is a lightweight assembler/disassembler with a focus on the
+following features:
+
+- Support for many CPUs.
+- Include files for game consoles, microcontrollers, sensors, and other
+  external devices.
+- Many samples to help out plus an MSP430 Tutorial.
+- Simulation for some CPUs.
+- More examples in the Java Grinder project.
