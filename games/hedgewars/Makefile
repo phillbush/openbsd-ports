@@ -20,7 +20,7 @@ WANTLIB  =		${COMPILER_LIBCXX} ${MODLUA_WANTLIB} \
 
 COMPILER =		base-clang ports-gcc base-gcc
 
-MASTER_SITES =		https://hedgewars.org/download/releases/
+SITES =			https://hedgewars.org/download/releases/
 EXTRACT_SUFX =		.tar.bz2
 
 MODULES =		devel/cmake \
