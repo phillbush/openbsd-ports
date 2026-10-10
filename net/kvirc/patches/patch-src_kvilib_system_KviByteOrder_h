@@ -1,0 +1,22 @@
+undef conflicting macros from /usr/include/sys/endian.h
+
+Index: src/kvilib/system/KviByteOrder.h
+--- src/kvilib/system/KviByteOrder.h.orig
++++ src/kvilib/system/KviByteOrder.h
+@@ -29,6 +29,16 @@
+ #include "kvi_settings.h"
+ #include "kvi_inttypes.h"
+ 
++#ifdef swap64
++#undef swap64
++#endif
++#ifdef swap32
++#undef swap32
++#endif
++#ifdef swap16
++#undef swap16
++#endif
++
+ namespace KviByteOrder
+ {
+ 	/**

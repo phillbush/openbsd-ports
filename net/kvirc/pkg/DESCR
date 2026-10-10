@@ -1,0 +1,11 @@
+KVIrc is a free and portable IRC client leveraging the Qt GUI toolkit.
+KVIrc is written by Szymon Stefanek and the KVIrc development team,
+with contributions and support of many IRC addicted developers around
+the world.
+
+Flavors:
+	dcc_voice	- build with voice messaging over DCC
+	kde		- build with KDE integration
+	python		- build with python scripting support
+	qtwebengine	- build with webpage loading support
+	spellchecker	- build with spellchecking support using textproc/enchant
